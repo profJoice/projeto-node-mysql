@@ -27,5 +27,6 @@ jobs:
     - name: Rodar testes (opcional)
       run: npm test  # Se você tiver testes configurados, rode-os aqui
 
+    # Remova a linha abaixo se o seu projeto não precisar de build
     - name: Construir o projeto
-      run: npm run build  # Se você tiver um comando de build no package.json (se não, pode remover essa linha)
+      run: npm run build  # Remova essa linha se não houver um comando "build"
