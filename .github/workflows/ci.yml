@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main  # Ou o nome da sua branch principal
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Define o ambiente para o build
+
+    steps:
+    - name: Checar o código
+      uses: actions/checkout@v2  # Faz o checkout do código do repositório
+
+    - name: Configurar o Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22.19.0'  # Versão do Node.js que você está usando (pode ser diferente)
+
+    - name: Instalar dependências
+      run: npm install  # Executa o npm install para instalar as dependências
+
+    - name: Rodar testes (opcional)
+      run: npm test  # Se você tiver testes configurados, rode-os aqui
+
+    - name: Construir o projeto
+      run: npm run build  # Se você tiver um comando de build no package.json (se não, pode remover essa linha)
