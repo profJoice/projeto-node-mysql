@@ -1,0 +1,81 @@
+Verifica se existe a variável "situacao" vinda da rota
+{{#if situacao}}
+
+  {{!-- Se a situação for "ok", mostra mensagem de sucesso --}}
+  {{#if (eq situacao "ok")}}
+    <div class="alert alert-success text-center">
+      ✅ Produto cadastrado com sucesso!
+    </div>
+
+  {{!-- Senão, se a situação for "erro", mostra mensagem de erro --}}
+  {{else if (eq situacao "erro")}}
+    <div class="alert alert-danger text-center">
+      ⚠️ Campos obrigatórios não preenchidos ou valor inválido.
+    </div>
+
+  {{/if}}
+
+{{/if}}
+
+
+{{! Formulário }}
+<section class="container">
+  <article class="row">
+    {{! offset avnaça 3 col, para centralizar }}
+    <div class="col-6 offset-3">
+      <form
+        class="mt-5"
+        action="/cadastrar"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="text"
+          name="nome"
+          class="form-control mb-3"
+          placeholder="nome do produto"
+        />
+        <input
+          type="number"
+          name="valor"
+          class="form-control mb-3"
+          placeholder="valor do produto"
+        />
+        <input type="file" name="imagem" class="form-control mb-3" />
+        {{! class btn remove formatação }}
+        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+      </form>
+    </div>
+  </article>
+</section>
+
+
+  {{! Seleção de produtos  }}
+  <section class="container">
+    <article class="row">
+      {{! #each é um bloco de repetição do Handlebars, muito parecido com um for ou foreach em linguagens de programação, Serve para percorrer arrays de objetos e renderizar HTML para cada item..  }}
+      {{#each produto}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <figure class="card mt-5 p-2">
+            <img src="../imagens/{{imagem}}" alt="Camisa" />
+            <figcaption class="text-center">{{nome}}</figcaption>
+            <p class="text-center">{{valor}}</p>
+
+            <a
+              href="/formularioEditar/{{idProduto}}"
+              class="btn btn-warning mt-2"
+            >Alterar</a>
+
+            
+            {{! remover é a rota, id select produto e imagem para remover da pasta }}
+            <a
+              href="/remover/{{idProduto}}& {{imagem}}"
+              class="btn btn-danger mt-2"
+              onclick="return confirm('⚠️ Você tem certeza que deseja excluir este produto?')"
+            >Remover</a>
+          </figure>
+        </div>
+      {{/each}}
+    </article>
+  </section>
+</main>

@@ -1,0 +1,30 @@
+{
+  "name": "projeto-js-mysql",
+  "version": "1.0.0",
+  "description": "Projeto NodeJS e MySQL",
+  "main": "index.js",
+  "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "express-handlebars",
+    "bootstrap",
+    "mysql"
+  ],
+  "author": "Joice S. L. Romanini",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.7",
+    "express": "^5.1.0",
+    "express-fileupload": "^1.5.2",
+    "express-handlebars": "^8.0.3",
+    "mysql2": "^3.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+

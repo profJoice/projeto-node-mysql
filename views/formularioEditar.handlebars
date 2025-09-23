@@ -1,0 +1,61 @@
+<main>
+  {{#if situacao}}
+    {{#if (eq situacao "ok")}}
+      <div class="alert alert-success text-center">
+        ✅ Produto alterado com sucesso!
+      </div>
+    {{else if (eq situacao "erro")}}
+      <div class="alert alert-danger text-center">
+        ⚠️ Erro ao alterar produto. Campos inválidos ou dados incompletos.
+      </div>
+    {{/if}}
+  {{/if}}
+
+  <section class="container">
+    <article class="row">
+      <div class="col-6 offset-3">
+        <form
+          class="mt-5"
+          action="/alterar"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <img
+            src="/imagens/{{produto.imagem}}"
+            alt="Imagem do produto"
+            class="mb-3"
+            style="max-width: 100%; height: auto;"
+          />
+
+          <input type="hidden" name="codigo" value="{{produto.idProduto}}" />
+          <input type="hidden" name="nomeImagem" value="{{produto.imagem}}" />
+
+          <input
+            type="text"
+            name="nome"
+            value="{{produto.nome}}"
+            class="form-control mb-3"
+            placeholder="Nome do produto"
+            required
+          />
+
+          <input
+            type="number"
+            step="0.01"
+            name="valor"
+            value="{{produto.valor}}"
+            class="form-control mb-3"
+            placeholder="Valor do produto"
+            required
+          />
+
+          <label for="imagem" class="form-label">Nova imagem (opcional):</label>
+          <input type="file" name="imagem" class="form-control mb-3" />
+
+          <button type="submit" class="btn btn-primary w-100">Alterar</button>
+          <a href="/" class="btn btn-secondary w-100 mt-3">Cancelar</a>
+        </form>
+      </div>
+    </article>
+  </section>
+</main>

@@ -1,0 +1,15 @@
+{{! mensagemStatus.handlebars }}
+
+{{#if situacao}}
+  {{#if (eq situacao "ok")}}
+    <div class="alert alert-success text-center">
+      ✅
+      {{mensagemSucesso}}
+    </div>
+  {{else if (eq situacao "erro")}}
+    <div class="alert alert-danger text-center">
+      ⚠️
+      {{mensagemErro}}
+    </div>
+  {{/if}}
+{{/if}}
