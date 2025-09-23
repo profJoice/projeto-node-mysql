@@ -24,8 +24,9 @@ jobs:
     - name: Instalar dependências
       run: npm install  # Executa o npm install para instalar as dependências
 
-    - name: Rodar testes (opcional)
-      run: npm test  # Se você tiver testes configurados, rode-os aqui
+    # Remover esta etapa de testes se não houver testes configurados
+    # - name: Rodar testes (opcional)
+    #   run: npm test  # Se você tiver testes configurados, rode-os aqui
 
     # Remova a linha abaixo se o seu projeto não precisar de build
     - name: Construir o projeto
