@@ -43,20 +43,26 @@ app.set("views", "./views");
 // ==============================
 // 📌 Conexão com MySQL (Pool)
 // ==============================
-const conexao = mysql.createConnection({
+const conexao = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-conexao.getConnection((erro) => {
+conexao.getConnection((erro, conn) => {
   if (erro) {
     console.error("❌ Erro ao conectar com banco:", erro.message);
     return;
   }
   console.log("✅ Conexão com banco de dados estabelecida");
+  conn.release();
+});
+g("✅ Conexão com banco de dados estabelecida");
 });
 
 // ==============================
@@ -192,4 +198,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
+
 
