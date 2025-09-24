@@ -3,6 +3,7 @@
 // ==============================
 const express = require("express");
 const fileupload = require("express-fileupload");
+
 const { engine } = require("express-handlebars");
 const mysql = require("mysql2");
 const fs = require("fs");
@@ -14,6 +15,10 @@ const app = express();
 
 // Habilitar upload de arquivos
 app.use(fileupload());
+
+// Permitir leitura de dados dos formulários (req.body)
+app.use(express.urlencoded({ extended: true }));
+
 
 // Arquivos estáticos
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
@@ -162,3 +167,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
+
